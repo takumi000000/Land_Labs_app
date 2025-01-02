@@ -1,10 +1,13 @@
+import datetime
 import bpy
-from path import model_path, output_image
 
 # --- 設定 ---
-MODEL_PATH = model_path()
-OUTPUT_IMAGE = output_image()
+timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S_")
+MODEL_PATH = R"C:\Users\shimo\Desktop\project\survey_app\Scaniverse_data.fbx"
+OUTPUT_IMAGE = Rf"C:\Users\shimo\Desktop\project\survey_app\images\{timestamp}ortho.png"
+OUTPUT_FAR_IMAGE = Rf"C:\Users\shimo\Desktop\project\survey_app\images\{timestamp}ortho.png"
 ORTHO_SCALE = 20.0
+ORTHO_FAR_SCALE = 50.0
 RESOLUTION = 1024
 
 # シーンの初期化
@@ -32,4 +35,14 @@ bpy.context.scene.render.filepath = OUTPUT_IMAGE
 
 # レンダリング
 bpy.ops.render.render(write_still=True)
+
+# # カメラ作成
+# camera_data.ortho_scale = ORTHO_FAR_SCALE
+# bpy.context.scene.collection.objects.link(camera_obj)
+# # シーンにカメラ設定
+# bpy.context.scene.render.filepath = ORTHO_FAR_SCALE
+# bpy.context.scene.render.filepath = OUTPUT_FAR_IMAGE
+# # レンダリング
+# bpy.ops.render.render(write_still=True)
+
 print("オルソ画像の作成が完了しました", OUTPUT_IMAGE)
